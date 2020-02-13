@@ -2,6 +2,8 @@ esphome:
   name: sensor_oficina
   platform: ESP32
   board: esp-wrover-kit
+  includes:
+    - ble_sensor.h
 
 wifi:
   ssid: "PTYLOGS"
@@ -23,3 +25,13 @@ api:
 
 ota:
   password: "Xjul1475&"
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto ble_sensor = new BLESensor();
+      App.register_component(ble_sensor);
+      return {ble_sensor};
+  
+    sensors:
+      name: "BLE Sensor"
