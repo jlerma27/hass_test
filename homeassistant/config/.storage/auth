@@ -1,0 +1,73 @@
+{
+    "data": {
+        "credentials": [
+            {
+                "auth_provider_id": null,
+                "auth_provider_type": "homeassistant",
+                "data": {
+                    "username": "jlerma"
+                },
+                "id": "e9fafa5391da40a9bbecc1b2be778f44",
+                "user_id": "184d9ad42f6f4c5cb002fd58575e5e44"
+            }
+        ],
+        "groups": [
+            {
+                "id": "system-admin",
+                "name": "Administrators"
+            },
+            {
+                "id": "system-users",
+                "name": "Users"
+            },
+            {
+                "id": "system-read-only",
+                "name": "Read Only"
+            }
+        ],
+        "refresh_tokens": [
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "http://localhost:8123/",
+                "client_name": null,
+                "created_at": "2020-02-12T21:44:29.092751+00:00",
+                "id": "cfdc92fb86f74e20af953c42971673ec",
+                "jwt_key": "b5f3155506fc2b7d3b096ac79a3d6c5562a85d9b1aa17eca7fe348e1ef1b95b076fed602b8c422ebf01f1ce30fb6b838b280a4f17e4c60dca1169499e97158d5",
+                "last_used_at": "2020-02-13T00:02:39.190279+00:00",
+                "last_used_ip": "127.0.0.1",
+                "token": "980eb5357ffeaa352cb1505701fe75ad6f66dba8d193525f19ba04ec863881a980cb59307fe63381e33053b8a22dc54fc514dfada9597abcd4b77fe0bb489bce",
+                "token_type": "normal",
+                "user_id": "184d9ad42f6f4c5cb002fd58575e5e44"
+            },
+            {
+                "access_token_expiration": 315360000.0,
+                "client_icon": null,
+                "client_id": null,
+                "client_name": "hass",
+                "created_at": "2020-02-12T21:50:33.739796+00:00",
+                "id": "ed6205f61406477290f63042b433ecf7",
+                "jwt_key": "81758f968009bb3b9078cca61e333c13a8cf5f46b6ff13836002f0225c2081cc4dda1babc31d06e674f9a89f3da4e2fbc57af40fdc3bdb86f98df8beaad63ae6",
+                "last_used_at": "2020-02-12T21:50:33.739907+00:00",
+                "last_used_ip": null,
+                "token": "f9f92b3d1e3418836c9f56dc15e721a27f94f9520a41c4c11231b10c1304d5aaddc2cd67efc0fcb18010d7cc6cc2c103e15a58c568d53bc1c8413a88f586ad4c",
+                "token_type": "long_lived_access_token",
+                "user_id": "184d9ad42f6f4c5cb002fd58575e5e44"
+            }
+        ],
+        "users": [
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "184d9ad42f6f4c5cb002fd58575e5e44",
+                "is_active": true,
+                "is_owner": true,
+                "name": "Julio Lerma",
+                "system_generated": false
+            }
+        ]
+    },
+    "key": "auth",
+    "version": 1
+}

@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "last_seen": "2020-02-13T00:06:04.552874+00:00",
+            "state": {
+                "attributes": {
+                    "editable": true,
+                    "friendly_name": "Julio Lerma",
+                    "id": "julio_lerma",
+                    "user_id": "184d9ad42f6f4c5cb002fd58575e5e44"
+                },
+                "context": {
+                    "id": "eca6b32164224b27aa8a6799dda12452",
+                    "parent_id": null,
+                    "user_id": null
+                },
+                "entity_id": "person.julio_lerma",
+                "last_changed": "2020-02-12T23:40:49.705204+00:00",
+                "last_updated": "2020-02-12T23:40:57.528544+00:00",
+                "state": "unknown"
+            }
+        }
+    ],
+    "key": "core.restore_state",
+    "version": 1
+}

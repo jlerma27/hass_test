@@ -1,0 +1,14 @@
+{
+    "data": {
+        "items": [
+            {
+                "device_trackers": [],
+                "id": "julio_lerma",
+                "name": "Julio Lerma",
+                "user_id": "184d9ad42f6f4c5cb002fd58575e5e44"
+            }
+        ]
+    },
+    "key": "person",
+    "version": 2
+}

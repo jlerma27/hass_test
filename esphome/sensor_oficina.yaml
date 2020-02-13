@@ -1,0 +1,25 @@
+esphome:
+  name: sensor_oficina
+  platform: ESP32
+  board: esp-wrover-kit
+
+wifi:
+  ssid: "PTYLOGS"
+  password: "KK4lvcGtm8Szfvv"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Sensor Oficina Fallback Hotspot"
+    password: "jvWCbh7NC2cb"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "Xjul1475&"
+
+ota:
+  password: "Xjul1475&"

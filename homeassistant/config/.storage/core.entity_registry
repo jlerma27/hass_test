@@ -1,0 +1,60 @@
+{
+    "data": {
+        "entities": [
+            {
+                "capabilities": {},
+                "config_entry_id": null,
+                "device_class": null,
+                "device_id": null,
+                "disabled_by": null,
+                "entity_id": "binary_sensor.updater",
+                "name": null,
+                "platform": "updater",
+                "supported_features": 0,
+                "unique_id": "updater",
+                "unit_of_measurement": null
+            },
+            {
+                "capabilities": {},
+                "config_entry_id": null,
+                "device_class": null,
+                "device_id": null,
+                "disabled_by": null,
+                "entity_id": "person.julio_lerma",
+                "name": null,
+                "platform": "person",
+                "supported_features": 0,
+                "unique_id": "julio_lerma",
+                "unit_of_measurement": null
+            },
+            {
+                "capabilities": {},
+                "config_entry_id": "d3e65bba4ac9428b965d827e2ea717ad",
+                "device_class": null,
+                "device_id": null,
+                "disabled_by": null,
+                "entity_id": "weather.home",
+                "name": null,
+                "platform": "met",
+                "supported_features": 0,
+                "unique_id": "home",
+                "unit_of_measurement": null
+            },
+            {
+                "capabilities": null,
+                "config_entry_id": "fe7535487f9a465b934066edf47d4716",
+                "device_class": null,
+                "device_id": "589d1d05242840da924d01bb273a0155",
+                "disabled_by": null,
+                "entity_id": "sensor.hacs",
+                "name": null,
+                "platform": "hacs",
+                "supported_features": 0,
+                "unique_id": "0717a0cd-745c-48fd-9b16-c8534c9704f9-bc944b0f-fd42-4a58-a072-ade38d1444cd",
+                "unit_of_measurement": "pending update(s)"
+            }
+        ]
+    },
+    "key": "core.entity_registry",
+    "version": 1
+}

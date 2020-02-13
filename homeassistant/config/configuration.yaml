@@ -1,0 +1,45 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+recorder:
+    purge_keep_days: 5
+    db_url: postgresql://postgres:hass2020@localhost/postgres
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+panel_iframe:
+  node_red:
+    title: 'Node Red'
+    icon: mdi:sitemap
+    url: 'http://192.168.4.9:1880/'
+    require_admin: true
+  portainer:
+    title: 'Portainer'
+    icon: mdi:docker
+    url: 'http://192.168.4.9:9000/'
+    require_admin: true
+  mqtt:
+    title: 'MQTT Broker'
+    icon: mdi:access-point
+    url: 'http://192.168.4.9:15672/'
+    require_admin: true
+  esphome:
+    title: 'ESP Home'
+    icon: mdi:chip
+    url: 'http://192.168.4.9:6052/'
+    require_admin: true

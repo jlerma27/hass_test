@@ -1,0 +1,79 @@
+{
+    "data": {
+        "entries": [
+            {
+                "connection_class": "cloud_poll",
+                "data": {
+                    "track_home": true
+                },
+                "domain": "met",
+                "entry_id": "d3e65bba4ac9428b965d827e2ea717ad",
+                "options": {},
+                "source": "onboarding",
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "title": "Home",
+                "unique_id": null,
+                "version": 1
+            },
+            {
+                "connection_class": "local_push",
+                "data": {
+                    "broker": "localhost",
+                    "discovery": true,
+                    "password": "Xjul1475&",
+                    "port": 1883,
+                    "username": "homeassistant"
+                },
+                "domain": "mqtt",
+                "entry_id": "441f58454df24ef1a48d702de4ee5e42",
+                "options": {},
+                "source": "user",
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "title": "localhost",
+                "unique_id": null,
+                "version": 1
+            },
+            {
+                "connection_class": "cloud_poll",
+                "data": {
+                    "appdaemon": true,
+                    "python_script": true,
+                    "sidepanel_icon": "mdi:alpha-c-box",
+                    "sidepanel_title": "HACS",
+                    "theme": true,
+                    "token": "8c78b98f62df3e6199df5a63164e7d1eb5a36bba"
+                },
+                "domain": "hacs",
+                "entry_id": "fe7535487f9a465b934066edf47d4716",
+                "options": {},
+                "source": "user",
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "title": "",
+                "unique_id": null,
+                "version": 1
+            },
+            {
+                "connection_class": "local_push",
+                "data": {},
+                "domain": "nodered",
+                "entry_id": "a63cb10e646549758ff9e14b909da81e",
+                "options": {},
+                "source": "user",
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "title": "Node-RED",
+                "unique_id": null,
+                "version": 1
+            }
+        ]
+    },
+    "key": "core.config_entries",
+    "version": 1
+}

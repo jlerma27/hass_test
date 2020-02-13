@@ -1,0 +1,125 @@
+version: "3.7"
+services:
+  home-assistant:
+    depends_on: 
+      - postgres
+      - rabbitmq
+      - esphome
+    container_name: home-assistant
+    image: homeassistant/home-assistant:stable
+    network_mode: host
+    restart: unless-stopped
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - ${LOCAL_PATH}/homeassistant/config:/config
+    command: 
+      bash -c '
+      pip3 -q install psycopg2 &&
+      python3 -m homeassistant --config /config'
+  postgres:
+    container_name: hass-postgres
+    image: postgres:12.1-alpine
+    hostname: postgres
+    networks:
+      - hass-internal
+    dns:
+      - ${DNS_SERVER}
+    dns_search:
+      - ${DNS_SEARCH}
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "hass2020"
+      PGDATA: /var/lib/postgresql/data/pgdata
+      # TZ: America/Panama
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - data-postgresql:/var/lib/postgresql/data/pgdata
+  nodered:
+    depends_on: 
+      - home-assistant
+    container_name: hass-nodered
+    image: nodered/node-red:1.0.3-2-12
+    hostname: nodered
+    networks:
+      - hass-internal
+    dns:
+      - ${DNS_SERVER}
+    dns_search:
+      - ${DNS_SEARCH}
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - config-nodered:/data
+  portainer:
+    container_name: hass-portainer
+    image: portainer/portainer:latest
+    hostname: portainer
+    networks:
+      - hass-internal
+    dns:
+      - ${DNS_SERVER}
+    dns_search:
+      - ${DNS_SEARCH}
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    # environment:
+    #   TZ: America/Panama
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${LOCAL_PATH}/portainer:/data
+  rabbitmq:
+    container_name: hass-rabbitmq
+    image: jlerma27/rabbitmq-mqtt:latest
+    hostname: rabbitmq
+    networks:
+      - hass-internal
+    dns:
+      - ${DNS_SERVER}
+    dns_search:
+      - ${DNS_SEARCH}
+    restart: unless-stopped
+    ports:
+      # - "15671:15671"
+      - "15672:15672"
+      # - "15675:15675"
+      # - "15692:15692"
+      - "5672:5672"
+      - "1883:1883"
+      # - "8883:8883"
+    environment: 
+      # TZ: America/Panama
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - config-rabbitmq:/etc/rabbitmq
+      - data-rabbitmq:/var/lib/rabbitmq
+  esphome:
+    container_name: hass-esphome
+    image: esphome/esphome:latest
+    hostname: esphome
+    network_mode: host
+    dns:
+      - ${DNS_SERVER}
+    dns_search:
+      - ${DNS_SEARCH}
+    restart: unless-stopped
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - ${LOCAL_PATH}/esphome:/config
+networks:
+  hass-internal:
+    driver: bridge
+volumes:
+  data-postgresql:
+  config-nodered:
+  config-rabbitmq:
+  data-rabbitmq:
+  

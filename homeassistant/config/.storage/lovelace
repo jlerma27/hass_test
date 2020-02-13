@@ -1,0 +1,47 @@
+{
+    "data": {
+        "config": {
+            "background": "var(--background-image)",
+            "custom_header": {
+                "background": "rgba(155, 155, 155, 0.25)",
+                "compact_mode": true,
+                "editor_warnings": false
+            },
+            "resources": [
+                {
+                    "type": "module",
+                    "url": "/community_plugin/custom-header/custom-header.js"
+                }
+            ],
+            "title": "Home",
+            "views": [
+                {
+                    "badges": [
+                        {
+                            "entity": "binary_sensor.updater"
+                        },
+                        {
+                            "entity": "person.julio_lerma"
+                        },
+                        {
+                            "entity": "sensor.hacs"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entity": "weather.home",
+                            "type": "weather-forecast"
+                        }
+                    ],
+                    "path": "default_view",
+                    "title": "Home"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}
