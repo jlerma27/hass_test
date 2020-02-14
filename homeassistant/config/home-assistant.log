@@ -1,3 +1,5 @@
-2020-02-14 16:48:41 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for nodered which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
-2020-02-14 16:48:41 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
-2020-02-14 16:49:01 ERROR (MainThread) [hacs] Validation for DSorlov/hasl-platform failed with GitHub returned 404 for https://api.github.com/repos/DSorlov/hasl-platform/git/trees/master.
+2020-02-14 21:21:46 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2020-02-14 21:21:46 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for nodered which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2020-02-14 21:22:20 WARNING (MainThread) [homeassistant.setup] Setup of default_config is taking over 10 seconds.
+2020-02-14 21:23:13 WARNING (MainThread) [homeassistant.components.http.ban] Login attempt or request with invalid authentication from 172.19.0.5
+2020-02-14 21:23:26 ERROR (MainThread) [hacs] Validation for DSorlov/hasl-platform failed with GitHub returned 404 for https://api.github.com/repos/DSorlov/hasl-platform/git/trees/master.

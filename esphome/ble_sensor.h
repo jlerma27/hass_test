@@ -3,7 +3,6 @@
 #include "BLEUtils.h"
 #include "BLEScan.h"
 #include "BLEAdvertisedDevice.h"
-#include "ArduinoJson.h"
 #include "BLEBeacon.h"
 #include "BLEEddystoneTLM.h"
 #include "BLEEddystoneURL.h"
@@ -81,6 +80,22 @@ class KalmanFilter {
         }
 };
 
+class BLEData {
+	public:
+        String id;
+        String uuid;
+        int rssi;
+        String name;
+        int txPower;
+        float distance;
+        int major;
+        int minor;
+
+		BLEData(){
+
+		}
+};
+
 class BeaconClass {
 	public:
 		KalmanFilter kfilter = KalmanFilter();
@@ -108,7 +123,7 @@ else
 	return false;
 }
 
-class BLESensor : public PollingComponent, public Sensor {
+class BLESensor : public PollingComponent, public CustomMQTTDevice {
     public:
     
     int scanTime;
@@ -250,7 +265,7 @@ class BLESensor : public PollingComponent, public Sensor {
 
         bool reportDevice(BLEAdvertisedDevice advertisedDevice, std::vector<String>& beaconsVector) {
 
-            StaticJsonDocument<500> doc;
+            BLEData doc = BLEData();
 
             String mac_address = advertisedDevice.getAddress().toString().c_str();
             mac_address.replace(":","");
@@ -259,17 +274,15 @@ class BLESensor : public PollingComponent, public Sensor {
             int rssi = advertisedDevice.getRSSI();
             float distance = 100.0;
 
-            doc["id"] = mac_address;
-            doc["uuid"] = mac_address;
-            doc["rssi"] = rssi;
+            doc.id = mac_address;
+            doc.uuid = mac_address;
+            doc.rssi = rssi;
 
             beaconsVector.push_back(mac_address);
 
             if (advertisedDevice.haveName()){
                 String nameBLE = String(advertisedDevice.getName().c_str());
-                doc["name"] = nameBLE;
-            }else{
-                doc["name"] = "unknown";
+                doc.name = nameBLE;
             }
 
             std::string strServiceData = advertisedDevice.getServiceData();
@@ -296,50 +309,43 @@ class BLESensor : public PollingComponent, public Sensor {
                         int major = ENDIAN_CHANGE_U16(oBeacon.getMajor());
 				        int minor = ENDIAN_CHANGE_U16(oBeacon.getMinor());
 
-                        doc["major"] = major;
-                        doc["minor"] = minor;
+                        doc.major = major;
+                        doc.minor = minor;
 
-                        doc["uuid"] = proximityUUID;
-                        doc["id"] = proximityUUID + "-" + String(major) + "-" + String(minor);
-                        doc["txPower"] = A0;
-                        doc["distance"] = distance;
+                        doc.uuid = proximityUUID;
+                        doc.id = proximityUUID + "-" + String(major) + "-" + String(minor);
+                        doc.txPower = A0;
+                        doc.distance = distance;
                     }else{
                         if (advertisedDevice.haveTXPower()) {
                             distance = calculateDistance(rssi, advertisedDevice.getTXPower(), mac_address);
-                            doc["txPower"] = advertisedDevice.getTXPower();
+                            doc.txPower = advertisedDevice.getTXPower();
                         } else {
                             distance = calculateDistance(rssi, -59, mac_address);
                         }
-                        doc["distance"] = distance;
+                        doc.distance = distance;
                     }
                 }else{
                     if (advertisedDevice.haveTXPower()) {
                         distance = calculateDistance(rssi, advertisedDevice.getTXPower(), mac_address);
-                        doc["txPower"] = advertisedDevice.getTXPower();
-                        doc["distance"] = distance;
+                        doc.txPower = advertisedDevice.getTXPower();
+                        doc.distance = distance;
                     }else{
                         distance = calculateDistance(rssi, -59, mac_address);
-                        doc["txPower"] = -59;
-                        doc["distance"] = distance;
+                        doc.txPower = -59;
+                        doc.distance = distance;
                     }
                 }
             }
 
-            const char* did = doc["id"];
-            const char* duuid = doc["uuid"];
-            int drssi = doc["rssi"];
-            const char* dname = doc["name"];
-            int dtxPower = doc["txPower"];
-            float ddistance = doc["distance"];
+            ESP_LOGD("ble_sensor.reportDevice", "id: %s", doc.id.c_str());
+            ESP_LOGD("ble_sensor.reportDevice", "uuid: %s", doc.uuid.c_str());
+            ESP_LOGD("ble_sensor.reportDevice", "rssi: %d", doc.rssi);
+            ESP_LOGD("ble_sensor.reportDevice", "name: %s", doc.name.c_str());
+            ESP_LOGD("ble_sensor.reportDevice", "txPower: %d", doc.txPower);
+            ESP_LOGD("ble_sensor.reportDevice", "distance: %.2f\n", doc.distance);
 
-            ESP_LOGD("ble_sensor.reportDevice", "id: %s", did);
-            ESP_LOGD("ble_sensor.reportDevice", "uuid: %s", duuid);
-            ESP_LOGD("ble_sensor.reportDevice", "rssi: %d", drssi);
-            ESP_LOGD("ble_sensor.reportDevice", "name: %s", dname);
-            ESP_LOGD("ble_sensor.reportDevice", "txPower: %d", dtxPower);
-            ESP_LOGD("ble_sensor.reportDevice", "distance: %.2f\n", ddistance);
-
-            if (doc["distance"] < maxDistance) {
+            if (doc.distance < maxDistance) {
                 return true;
             }
 
