@@ -1,0 +1,40 @@
+esphome:
+  name: sensor_cuarto
+  platform: ESP32
+  board: nodemcu-32s
+  includes:
+    - ble_sensor.h
+  libraries:
+    - "ArduinoJSON@^6"
+    - "ESP32 BLE Arduino@^1.0.1"
+
+wifi:
+  ssid: "LERMANET"
+  password: "lermawifiwpa"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Sensor Cuarto Fallback Hotspot"
+    password: "j71nJTYVXMK3"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "Xjul1475&"
+
+ota:
+  password: "Xjul1475&"
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto ble_sensor = new BLESensor(15000);
+      App.register_component(ble_sensor);
+      return {ble_sensor};
+  
+    sensors:
+      name: "BLE Custom Sensor"
