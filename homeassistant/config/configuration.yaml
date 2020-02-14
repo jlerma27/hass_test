@@ -26,20 +26,20 @@ panel_iframe:
   node_red:
     title: 'Node Red'
     icon: mdi:sitemap
-    url: 'http://192.168.2.11:1880/'
+    url: 'http://localhost:1880/'
     require_admin: true
   portainer:
     title: 'Portainer'
     icon: mdi:docker
-    url: 'http://192.168.2.11:9000/'
+    url: 'http://localhost:9000/'
     require_admin: true
   mqtt:
     title: 'MQTT Broker'
     icon: mdi:access-point
-    url: 'http://192.168.2.11:15672/'
+    url: 'http://localhost:15672/'
     require_admin: true
   esphome:
     title: 'ESP Home'
     icon: mdi:chip
-    url: 'http://192.168.2.11:6052/'
+    url: 'http://localhost:6052/'
     require_admin: true
